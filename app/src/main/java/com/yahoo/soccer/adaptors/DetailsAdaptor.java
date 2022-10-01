@@ -3,6 +3,7 @@ package com.yahoo.soccer.adaptors;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -57,6 +58,12 @@ public class DetailsAdaptor extends RecyclerView.Adapter<DetailsAdaptor.MyViewHo
                 context.startActivity(i);
             }
         });
+        if(i %2 == 1) {
+            myViewHolder.itemView.setBackgroundColor(Color.parseColor("#FFFFFF"));
+        }
+        else {
+            myViewHolder.itemView.setBackgroundColor(Color.parseColor("#FFFAF8FD"));
+        }
 
         myViewHolder.won.setText(String.valueOf(won));
         myViewHolder.draw.setText(String.valueOf(draw));
@@ -95,7 +102,14 @@ public class DetailsAdaptor extends RecyclerView.Adapter<DetailsAdaptor.MyViewHo
 
         teamScores.remove(mTeamId);
 
+        // Reversing the scores to show against selected team
         List<Team> teams = new ArrayList<>(teamScores.values());
+        for (Team t:teams) {
+            int w = t.getWin();
+            t.setWin(t.getLoss());
+            t.setLoss(w);
+        }
+
         Collections.sort(teams, new Comparator<Team>() {
             @Override
             public int compare(Team team, Team t1) {

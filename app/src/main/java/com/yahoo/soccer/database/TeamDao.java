@@ -38,6 +38,11 @@ public interface TeamDao {
     @Query("SELECT * FROM TEAM ORDER BY DRAW ASC, NAME")
     public List<Team> loadTeamByDrawRev();
 
+    @Query("SELECT *,100*WIN/(WIN+LOSS+DRAW) AS T FROM TEAM ORDER BY T DESC, NAME")
+    public List<Team> loadTeamByWPer();
+    @Query("SELECT *,100*WIN/(WIN+LOSS+DRAW) AS T FROM TEAM ORDER BY T ASC, NAME")
+    public List<Team> loadTeamByWPerRev();
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertTeam(Team team);
 

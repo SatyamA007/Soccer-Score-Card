@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".activities.MainActivity">
-
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".activities.DetailsPage"
+    android:orientation="vertical">
     <LinearLayout
         android:id="@+id/headings"
         android:layout_width="match_parent"
@@ -26,15 +26,15 @@
             android:layout_weight="8"
             android:paddingHorizontal="3dp"
             android:orientation="horizontal">
-        <TextView
-            android:id="@+id/team_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:clickable="false"
-            android:text="@string/team_name_heading"
-            android:textColor="@color/colorBlack"
-            android:textSize="15sp"
-            android:textStyle="bold" />
+            <TextView
+                android:id="@+id/team_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="false"
+                android:text="@string/team_name_heading"
+                android:textColor="@color/colorBlack"
+                android:textSize="15sp"
+                android:textStyle="bold" />
             <ImageView
                 android:id="@+id/nsort_up"
                 android:clickable="false"
@@ -134,27 +134,27 @@
                 android:src="@drawable/ic_baseline_keyboard_double_arrow_up_24"/>
         </LinearLayout>
         <LinearLayout
-            android:id="@+id/sort_wp"
+            android:id="@+id/sort_t"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="2"
             android:paddingHorizontal="3dp"
             android:orientation="horizontal">
             <TextView
-                android:id="@+id/team_wp"
+                android:id="@+id/team_t"
                 android:clickable="false"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/wpercent_heading" />
+                android:text="@string/total_heading" />
             <ImageView
-                android:id="@+id/wpsort_up"
+                android:id="@+id/tsort_up"
                 android:clickable="false"
                 android:visibility="invisible"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_baseline_keyboard_double_arrow_down_24"/>
             <ImageView
-                android:id="@+id/wpsort_down"
+                android:id="@+id/tsort_down"
                 android:clickable="false"
                 android:visibility="gone"
                 android:layout_width="wrap_content"
@@ -163,27 +163,15 @@
         </LinearLayout>
     </LinearLayout>
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/refreshFAB"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginBottom="16dp"
-        android:backgroundTint="@color/white"
-        app:borderWidth="0dp"
-        android:src="@drawable/ic_menu_refresh"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:contentDescription="refresh" />
-
+    <ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerView"
+        android:id="@+id/recyclerView2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/headings"/>
-
-
-</android.support.constraint.ConstraintLayout>
+        app:layout_constraintTop_toTopOf="parent" />
+    </ScrollView>
+</LinearLayout>

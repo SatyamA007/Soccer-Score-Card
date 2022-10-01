@@ -3,6 +3,7 @@ package com.yahoo.soccer.adaptors;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -52,6 +53,12 @@ public class TeamAdaptor extends RecyclerView.Adapter<TeamAdaptor.MyViewHolder> 
                 context.startActivity(i);
             }
         });
+        if(i %2 == 1) {
+            myViewHolder.itemView.setBackgroundColor(Color.parseColor("#FFFFFF"));
+        }
+        else {
+            myViewHolder.itemView.setBackgroundColor(Color.parseColor("#FFFAF8FD"));
+        }
 
         myViewHolder.won.setText(String.valueOf(won));
         myViewHolder.draw.setText(String.valueOf(draw));

@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
     final Observer<Integer> sortObserver = new Observer<Integer>() {
         @Override
         public void onChanged(@Nullable Integer integer) {
-            retrieveTasks();
+            retrieveTasks(integer);
         }
     };
 
@@ -74,12 +74,14 @@ public class MainActivity extends AppCompatActivity {
                 (ImageView)findViewById(R.id.wsort_up),(ImageView)findViewById(R.id.wsort_down),
                 (ImageView)findViewById(R.id.lsort_up),(ImageView)findViewById(R.id.lsort_down),
                 (ImageView)findViewById(R.id.dsort_up),(ImageView)findViewById(R.id.dsort_down),
-                (ImageView)findViewById(R.id.nsort_up),(ImageView)findViewById(R.id.nsort_down)
+                (ImageView)findViewById(R.id.nsort_up),(ImageView)findViewById(R.id.nsort_down),
+                (ImageView)findViewById(R.id.wpsort_up),(ImageView)findViewById(R.id.wpsort_down)
         ));
 
         final List<LinearLayout> allSortViews = new ArrayList<>(Arrays.asList(
                 (LinearLayout)findViewById(R.id.sort_w),(LinearLayout)findViewById(R.id.sort_l),
-                (LinearLayout)findViewById(R.id.sort_d),(LinearLayout)findViewById(R.id.sort_name)
+                (LinearLayout)findViewById(R.id.sort_d),(LinearLayout)findViewById(R.id.sort_name),
+                (LinearLayout)findViewById(R.id.sort_wp)
         ));
 
         for(int i=0;i<allSortViews.size();i++){
@@ -124,24 +126,12 @@ public class MainActivity extends AppCompatActivity {
         };
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        retrieveTasks();
-    }
 
-    private void retrieveTasks() {
+    private void retrieveTasks(final Integer sortVal) {
         AppExecutors.getInstance().diskIO().execute(new Runnable() {
             @Override
             public void run() {
                 final List<Team> teams;
-                int sortVal = 0;
-
-                try {
-                    sortVal = sortingConstant.getValue();
-                } catch (NullPointerException ignored){
-                }
-
                 switch (sortVal){
                     case Constants.wsort_up:  teams = mDb.teamDao().loadTeamByWin();
                                                 break;
@@ -158,6 +148,10 @@ public class MainActivity extends AppCompatActivity {
                     case Constants.nsort_up:  teams = mDb.teamDao().loadTeamByName();
                                                 break;
                     case Constants.nsort_down:  teams = mDb.teamDao().loadTeamByNameRev();
+                                                break;
+                    case Constants.tsort_up:  teams = mDb.teamDao().loadTeamByWPer();
+                                                break;
+                    case Constants.tsort_down:  teams = mDb.teamDao().loadTeamByWPerRev();
                                                 break;
                     default:  teams = mDb.teamDao().loadTeamByName();
                                                 break;
