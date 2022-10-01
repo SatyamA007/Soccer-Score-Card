@@ -11,7 +11,7 @@
         android:usesCleartextTraffic="true"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.yahoo.soccer.activities.EditActivity"></activity>
+        <activity android:name="com.yahoo.soccer.activities.DetailsPage"></activity>
         <activity android:name="com.yahoo.soccer.activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

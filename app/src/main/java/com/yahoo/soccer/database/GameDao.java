@@ -18,6 +18,9 @@ public interface GameDao {
     @Query("SELECT * FROM GAME ORDER BY ID")
     List<Game> loadAllGames();
 
+    @Query("SELECT * FROM GAME WHERE AID = :teamId OR BID = :teamId")
+    List<Game> loadGamesWithTeamId(String teamId);
+
     @Query("SELECT EXISTS(SELECT * FROM GAME WHERE ID = :id)")
     boolean isRowIsExist(String id);
 

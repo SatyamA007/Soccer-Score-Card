@@ -131,7 +131,7 @@ class JsonTask extends AsyncTask<String, String, String> {
             String bscore = jsonobject.getString("HomeScore");
             Log.d("teamScore: ",aname+" "+ascore);
 
-            setTeamHash(id,aname,aid,bname,bid,Integer.parseInt(ascore) - Integer.parseInt(bscore));
+            setTeamHash(aname,aid,bname,bid,Integer.parseInt(ascore) - Integer.parseInt(bscore));
 
             if(!mDb.gameDao().isRowIsExist(id)) {
                 saveGameRecord(id, aid, bid, ascore, bscore);
@@ -146,7 +146,7 @@ class JsonTask extends AsyncTask<String, String, String> {
     }
 
     //whoWon = 0 - draw, >0 - a, <0 - b
-    private void setTeamHash(String id, String aname, String aid, String bname, String bid, int whoWon) {
+    private void setTeamHash(String aname, String aid, String bname, String bid, int whoWon) {
         if(!teamScores.containsKey(aid)){
             teamScores.put(aid, new Team(aid,aname,0,0,0));
         }
@@ -166,7 +166,6 @@ class JsonTask extends AsyncTask<String, String, String> {
             teamScores.get(aid).setLoss(teamScores.get(aid).getLoss()+1);
             teamScores.get(bid).setWin(teamScores.get(bid).getWin()+1);
         }
-
     }
 
     public void saveGameRecord(String id, String aid, String bid, String ascore, String bscore) {
