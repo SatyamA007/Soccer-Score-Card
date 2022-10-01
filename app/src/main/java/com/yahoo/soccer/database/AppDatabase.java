@@ -8,8 +8,9 @@ import android.content.Context;
 import android.util.Log;
 
 import com.yahoo.soccer.model.Game;
+import com.yahoo.soccer.model.Team;
 
-@Database(entities = {Game.class}, version = 2, exportSchema = false)
+@Database(entities = {Game.class, Team.class}, version = 3, exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
     private static final String LOG_TAG = AppDatabase.class.getSimpleName();
     private static final Object LOCK = new Object();
@@ -31,4 +32,5 @@ public abstract class AppDatabase extends RoomDatabase {
     }
 
     public abstract GameDao gameDao();
+    public abstract TeamDao teamDao();
 }

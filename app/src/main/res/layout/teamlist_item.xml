@@ -10,60 +10,52 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
+            android:orientation="horizontal"
             android:padding="10dp"
+            android:weightSum="16"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
-                android:id="@+id/person_name"
-                android:layout_width="wrap_content"
+                android:id="@+id/team_name"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="Satyam Awasthi"
                 android:textColor="@color/colorBlack"
                 android:textSize="15dp"
+                android:layout_weight="8"
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/person_email"
-                android:layout_width="wrap_content"
+                android:id="@+id/team_w"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="satyamawasthi007@gmail.com" />
+                android:layout_weight="2"
+                android:text="0" />
 
             <TextView
-                android:id="@+id/person_number"
-                android:layout_width="wrap_content"
+                android:id="@+id/team_l"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="8207588453" />
+                android:layout_weight="2"
+                android:text="0" />
 
             <TextView
-                android:id="@+id/person_pincode"
-                android:layout_width="wrap_content"
+                android:id="@+id/team_d"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="201301" />
+                android:layout_weight="2"
+                android:text="0" />
 
             <TextView
-                android:id="@+id/person_city"
-                android:layout_width="wrap_content"
+                android:id="@+id/team_wpercent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="Noida" />
+                android:layout_weight="2"
+                android:text="100" />
         </LinearLayout>
-
-        <ImageView
-            android:id="@+id/edit_Image"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginRight="16dp"
-            android:layout_marginBottom="8dp"
-            android:src="@drawable/ic_edit_black_24dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
 
     </android.support.constraint.ConstraintLayout>
 </android.support.v7.widget.CardView>

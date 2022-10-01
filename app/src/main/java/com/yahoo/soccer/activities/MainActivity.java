@@ -1,6 +1,7 @@
 package com.yahoo.soccer.activities;
 
 
+import android.arch.lifecycle.LiveData;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -11,17 +12,17 @@ import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.View;
 
 import com.yahoo.soccer.R;
-import com.yahoo.soccer.adaptors.GameAdaptor;
+import com.yahoo.soccer.adaptors.TeamAdaptor;
 import com.yahoo.soccer.database.AppDatabase;
 import com.yahoo.soccer.database.AppExecutors;
-import com.yahoo.soccer.model.Game;
+import com.yahoo.soccer.model.Team;
 
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     FloatingActionButton floatingActionButton;
     private RecyclerView mRecyclerView;
-    private GameAdaptor mAdapter;
+    private TeamAdaptor mAdapter;
     private AppDatabase mDb;
 
     @Override
@@ -43,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         // Initialize the adapter and attach it to the RecyclerView
-        mAdapter = new GameAdaptor(this);
+        mAdapter = new TeamAdaptor(this);
         mRecyclerView.setAdapter(mAdapter);
         mDb = AppDatabase.getInstance(getApplicationContext());
 
@@ -59,12 +60,12 @@ public class MainActivity extends AppCompatActivity {
         AppExecutors.getInstance().diskIO().execute(new Runnable() {
             @Override
             public void run() {
-                final List<Game> games = mDb.gameDao().loadAllGames();
+                final List<Team> teams = mDb.teamDao().loadTeamByWin();
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
 
-                        mAdapter.setTasks(games);
+                        mAdapter.setTasks(teams);
                     }
                 });
             }

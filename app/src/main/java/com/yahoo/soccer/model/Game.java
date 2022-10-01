@@ -1,7 +1,6 @@
 package com.yahoo.soccer.model;
 
 import android.arch.persistence.room.Entity;
-import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
 
@@ -10,24 +9,15 @@ public class Game {
     @NonNull
     @PrimaryKey
     String id;
-    String aname;
-    String bname;
+    String aid;
+    String bid;
     String ascore;
     String bscore;
 
-    @Ignore
-    public Game(String aname, String bname, String ascore, String bscore) {
-        this.aname = aname;
-        this.bname = bname;
-        this.ascore = ascore;
-        this.bscore = bscore;
-        id = "0";
-    }
-
-    public Game(String id, String aname, String bname, String ascore, String bscore) {
+    public Game(String id, String aid, String bid, String ascore, String bscore) {
         this.id = id;
-        this.aname = aname;
-        this.bname = bname;
+        this.aid = aid;
+        this.bid = bid;
         this.ascore = ascore;
         this.bscore = bscore;
     }
@@ -40,20 +30,20 @@ public class Game {
         this.id = id;
     }
 
-    public String getAname() {
-        return aname;
+    public String getAid() {
+        return aid;
     }
 
-    public void setAname(String aname) {
-        this.aname = aname;
+    public void setAid(String aid) {
+        this.aid = aid;
     }
 
-    public String getBname() {
-        return bname;
+    public String getBid() {
+        return bid;
     }
 
-    public void setBname(String bname) {
-        this.bname = bname;
+    public void setBid(String bid) {
+        this.bid = bid;
     }
 
     public String getAscore() {

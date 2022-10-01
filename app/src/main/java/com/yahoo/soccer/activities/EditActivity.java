@@ -58,8 +58,8 @@ public class EditActivity extends AppCompatActivity {
             return;
         }
 
-        aname.setText(game.getAname());
-        bname.setText(game.getBname());
+        aname.setText(game.getAid());
+        bname.setText(game.getBid());
         bscore.setText(game.getAscore());
         ascore.setText(game.getBscore());
     }
@@ -80,6 +80,7 @@ public class EditActivity extends AppCompatActivity {
 
     public void onSaveButtonClicked() {
         final Game game = new Game(
+                "0",
                 aname.getText().toString(),
                 bname.getText().toString(),
                 bscore.getText().toString(),
