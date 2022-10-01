@@ -4,27 +4,167 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".activities.MainActivity">
 
+    <LinearLayout
+        android:id="@+id/headings"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="10dp"
+        android:weightSum="16"
+        android:background="#dcdcdc"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:id="@+id/sort_name"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="8"
+            android:paddingHorizontal="3dp"
+            android:orientation="horizontal">
+        <TextView
+            android:id="@+id/team_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="false"
+            android:text="@string/team_name_heading"
+            android:textColor="@color/colorBlack"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+            <ImageView
+                android:id="@+id/nsort_up"
+                android:clickable="false"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_baseline_keyboard_double_arrow_up_24"/>
+            <ImageView
+                android:id="@+id/nsort_down"
+                android:clickable="false"
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_baseline_keyboard_double_arrow_down_24"/>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/sort_w"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:paddingHorizontal="3dp"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/team_w"
+                android:clickable="false"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/win_heading" />
+            <ImageView
+                android:id="@+id/wsort_up"
+                android:clickable="false"
+                android:visibility="invisible"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_baseline_keyboard_double_arrow_down_24"/>
+            <ImageView
+                android:id="@+id/wsort_down"
+                android:clickable="false"
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_baseline_keyboard_double_arrow_up_24"/>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/sort_l"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:paddingHorizontal="3dp"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/team_l"
+                android:clickable="false"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/loss_heading" />
+            <ImageView
+                android:id="@+id/lsort_up"
+                android:clickable="false"
+                android:visibility="invisible"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_baseline_keyboard_double_arrow_down_24"/>
+            <ImageView
+                android:id="@+id/lsort_down"
+                android:clickable="false"
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_baseline_keyboard_double_arrow_up_24"/>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/sort_d"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:paddingHorizontal="3dp"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/team_d"
+                android:clickable="false"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/draw_heading" />
+            <ImageView
+                android:id="@+id/dsort_up"
+                android:clickable="false"
+                android:visibility="invisible"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_baseline_keyboard_double_arrow_down_24"/>
+            <ImageView
+                android:id="@+id/dsort_down"
+                android:clickable="false"
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_baseline_keyboard_double_arrow_up_24"/>
+        </LinearLayout>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:orientation="horizontal"
+            android:paddingHorizontal="3dp"
+            android:id="@+id/team_wpercent"
+            android:text="@string/wpercent_heading">
+        </TextView>
+    </LinearLayout>
+
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/addFAB"
+        android:id="@+id/refreshFAB"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginBottom="16dp"
         android:backgroundTint="@color/white"
-        android:src="@drawable/ic_add_black_24dp"
+        app:borderWidth="0dp"
+        android:src="@drawable/ic_menu_refresh"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        android:contentDescription="refresh" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/headings"/>
 
 
 </android.support.constraint.ConstraintLayout>

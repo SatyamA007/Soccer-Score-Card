@@ -1,12 +1,14 @@
 package com.yahoo.soccer.activities;
 
 import android.app.ProgressDialog;
+import android.arch.lifecycle.MutableLiveData;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.util.Log;
 
+import com.yahoo.soccer.constants.Constants;
 import com.yahoo.soccer.database.AppDatabase;
 import com.yahoo.soccer.database.AppExecutors;
 import com.yahoo.soccer.model.Game;
@@ -33,12 +35,14 @@ class JsonTask extends AsyncTask<String, String, String> {
     Set<String> teamsToDo;
     HashMap<String, Team> teamScores;
     boolean newGamesAdded = false;
+    MutableLiveData<Integer> sortingConstant;
 
-    JsonTask(Context context){
+    JsonTask(MainActivity context){
         teamScores = new HashMap<>();
         teamsToDo = new HashSet<>();
         mDb = AppDatabase.getInstance(context.getApplicationContext());
         pd = new ProgressDialog(context);
+        sortingConstant = context.getSortLiveData();
     }
 
     protected void onPreExecute() {
@@ -191,5 +195,6 @@ class JsonTask extends AsyncTask<String, String, String> {
         if (pd.isShowing()){
             pd.dismiss();
         }
+        sortingConstant.setValue(Constants.nsort_up);
     }
 }

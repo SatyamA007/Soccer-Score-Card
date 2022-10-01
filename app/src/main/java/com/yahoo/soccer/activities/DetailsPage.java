@@ -21,6 +21,7 @@ public class DetailsPage extends AppCompatActivity {
     private DetailsAdaptor mAdapter;
     private AppDatabase mDb;
     String mTeamId;
+    String mTeamName;
     Intent intent;
 
     @Override
@@ -45,11 +46,11 @@ public class DetailsPage extends AppCompatActivity {
             @Override
             public void run() {
                 final List<Team> teams = mAdapter.getTeamsAgainst(mTeamId, mDb);
-                getSupportActionBar().setTitle(mDb.teamDao().loadTeamById(mTeamId).getName());  // provide compatibility to all the versions
+                mTeamName = mDb.teamDao().loadTeamById(mTeamId).getName();  // provide compatibility to all the versions
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-
+                        getSupportActionBar().setTitle(mTeamName);
                         mAdapter.setTasks(teams);
                     }
                 });

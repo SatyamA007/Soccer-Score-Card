@@ -46,6 +46,17 @@ public class DetailsAdaptor extends RecyclerView.Adapter<DetailsAdaptor.MyViewHo
         int draw = mTeamList.get(i).getDraw();
         int loss = mTeamList.get(i).getLoss();
         int total = won+draw+loss;
+        final int idx = i;
+
+        myViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String elementId = mTeamList.get(idx).getId();
+                Intent i = new Intent(context, DetailsPage.class);
+                i.putExtra(Constants.UPDATE_Team_Id, elementId);
+                context.startActivity(i);
+            }
+        });
 
         myViewHolder.won.setText(String.valueOf(won));
         myViewHolder.draw.setText(String.valueOf(draw));
@@ -117,7 +128,7 @@ public class DetailsAdaptor extends RecyclerView.Adapter<DetailsAdaptor.MyViewHo
         }
     }
 
-    class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    class MyViewHolder extends RecyclerView.ViewHolder {
         TextView name, won, loss, draw, total;
         AppDatabase mDb;
 
@@ -129,15 +140,6 @@ public class DetailsAdaptor extends RecyclerView.Adapter<DetailsAdaptor.MyViewHo
             loss = itemView.findViewById(R.id.team_l);
             draw = itemView.findViewById(R.id.team_d);
             total = itemView.findViewById(R.id.team_wpercent);
-
-        }
-
-        @Override
-        public void onClick(View view) {
-            String elementId = mTeamList.get(getAdapterPosition()).getId();
-            Intent i = new Intent(context, DetailsPage.class);
-            i.putExtra(Constants.UPDATE_Team_Id, elementId);
-            context.startActivity(i);
         }
     }
 }

@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Game App</string>
+    <string name="loss_heading">L</string>
+    <string name="draw_heading">D</string>
+    <string name="total_heading">T</string>
+    <string name="win_heading">W</string>
+    <string name="team_name_heading">Team Name</string>
+    <string name="wpercent_heading">Win%</string>
 </resources>
